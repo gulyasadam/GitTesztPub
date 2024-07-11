@@ -1,21 +1,29 @@
-name: cppcheck-action-test
+name: cppcheck-action
 on: [push]
 
 jobs:
   build:
-    name: cppcheck-test
+    name: cppcheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-          
       - name: cppcheck
         uses: deep5050/cppcheck-action@main
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN}}
-          
-        
-      - name: publish report    
-        uses: gulyasadam@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: 'master' # your branch name goes here
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          check_library: enable
+          skip_preprocessor: disable 
+          enable: all
+          inconclusive: enable
+          inline_suppression: disable
+          force: disable
+          max_ctu_depth: 3
+          platform: unspecified
+          output_file: ./cppcheck_report.txt
+          other_options: disable
+
+      - name: Upload cppcheck report
+        uses: actions/upload-artifact@v2
+        with:
+          name: cppcheck-report
+          path: ./cppcheck_report.txt
