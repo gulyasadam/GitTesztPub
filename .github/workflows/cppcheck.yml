@@ -14,14 +14,12 @@ jobs:
           check_library: disable
           skip_preprocessor: disable 
           enable: all
-          exclude_check:
           inconclusive: enable
           inline_suppression: disable
           force_language: 
           force: disable
           max_ctu_depth: 3
           platform: unspecified
-          std: 
           output_file: ./cppcheck_report.txt
           other_options: disable
 
