@@ -27,3 +27,6 @@ jobs:
         with:
           name: cppcheck-report
           path: ./cppcheck_report.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: 'master' # your branch name goes here
