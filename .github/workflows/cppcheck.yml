@@ -16,7 +16,7 @@ jobs:
           enable: all
           inconclusive: enable
           inline_suppression: disable
-          force_language: 
+          force_language: c11, c++20
           force: disable
           max_ctu_depth: 3
           platform: unspecified
