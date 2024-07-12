@@ -21,7 +21,7 @@ jobs:
           max_ctu_depth: 3
           platform: unspecified
           output_file: ./cppcheck_report.txt
-          other_options: --enable=all .
+          other_options: enable
 
       - name: Display Cppcheck Report
         run: cat ./cppcheck_report.txt
