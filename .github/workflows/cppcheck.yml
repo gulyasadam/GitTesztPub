@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: cppcheck
+
+      - name: Run Cppcheck
         uses: deep5050/cppcheck-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -20,12 +21,13 @@ jobs:
           max_ctu_depth: 3
           platform: unspecified
           output_file: ./cppcheck_report.txt
-          other_options: disable
+          other_options: --enable=all .
 
-      - name: Upload cppcheck report
+      - name: Display Cppcheck Report
+        run: cat ./cppcheck_report.txt
+
+      - name: Upload Cppcheck Report
         uses: actions/upload-artifact@v2
         with:
           name: cppcheck-report
           path: ./cppcheck_report.txt
-
-
