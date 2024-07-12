@@ -23,7 +23,7 @@ jobs:
           other_options: disable
 
       - name: Upload cppcheck report
-        uses: mikeal/publish-to-github-action@master
+        uses: gulyasadam/GitTeszt@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: 'master' # your branch name goes here
