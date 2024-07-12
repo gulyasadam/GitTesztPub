@@ -6,9 +6,10 @@ jobs:
     name: cppcheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+
       - name: cppcheck
-        uses: deep5050/cppcheck-action@main
+        uses: deep5050/cppcheck-action@master # Assuming this is the correct version based on the GitHub Marketplace
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           check_library: enable
@@ -16,14 +17,13 @@ jobs:
           enable: all
           inconclusive: enable
           inline_suppression: disable
-          force: disable
           max_ctu_depth: 5
           platform: unspecified
           output_file: ./cppcheck_report.txt
-          other_options: disable
 
       - name: Upload cppcheck report
-        uses: gulyasadam/GitTeszt@master
+        uses: mikeal/publish-to-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: 'master' # your branch name goes here
+
