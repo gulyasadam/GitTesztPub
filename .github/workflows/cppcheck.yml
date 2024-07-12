@@ -21,7 +21,7 @@ jobs:
           platform: unspecified
           output_file: ./cppcheck_report.txt
 
-      - name: Upload cppcheck report
+      - name: publish report
         uses: mikeal/publish-to-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
