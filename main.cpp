@@ -1,11 +1,12 @@
-void f() {
+void f()
+{
     char arr[5];
-    arr[10] =0;
+    arr[10] = 1;
 }
 
 void f(int *p)
 {
-    *p=3;
+    *p = 3;
 }
 
 int main()
