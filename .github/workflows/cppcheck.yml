@@ -17,7 +17,7 @@ jobs:
           enable: all
           inconclusive: enable
           inline_suppression: disable
-          max_ctu_depth: 5
+          max_ctu_depth: 4
           platform: unspecified
           output_file: ./cppcheck_report.txt
 
