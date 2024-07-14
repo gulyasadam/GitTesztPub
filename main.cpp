@@ -1,7 +1,7 @@
 void f()
 {
     char arr[5];
-    arr[10] = 3;
+    arr[10] = 4;
 }
 
 void f(int *p)

@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run cppcheck
-        uses: deep5050/cppcheck-action@v1.1.1
+        uses: deep5050/cppcheck-action
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
