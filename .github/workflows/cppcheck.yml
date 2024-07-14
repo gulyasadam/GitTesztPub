@@ -1,33 +1,25 @@
-name: cppcheck-action
-on: [push]
+name: Cppcheck
+
+on: [push, pull_request]
 
 jobs:
-  build:
-    name: cppcheck
+  cppcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Run Cppcheck
-        uses: deep5050/cppcheck-action@main
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          check_library: enable
-          skip_preprocessor: disable 
-          enable: all
-          inconclusive: enable
-          inline_suppression: disable
-          force: disable
-          max_ctu_depth: 3
-          platform: unspecified
-          output_file: ./cppcheck_report.txt
-          other_options: enable
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-      - name: Display Cppcheck Report
-        run: cat ./cppcheck_report.txt
+    - name: Install Cppcheck
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cppcheck
 
-      - name: Upload Cppcheck Report
-        uses: gulyasadam/GitTesztPub@master
-        with:
-          name: cppcheck-report
-          path: ./cppcheck_report.txt
+    - name: Run Cppcheck
+      run: |
+        cppcheck --enable=all --inconclusive --xml --xml-version=2 . 2> cppcheck-result.xml
+        cat cppcheck-result.xml
