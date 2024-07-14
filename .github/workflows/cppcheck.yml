@@ -27,7 +27,7 @@ jobs:
         run: cat ./cppcheck_report.txt
 
       - name: Upload Cppcheck Report
-        uses: actions/upload-artifact@v2
+        uses: gulyasadam/GitTesztPub@master
         with:
           name: cppcheck-report
           path: ./cppcheck_report.txt
