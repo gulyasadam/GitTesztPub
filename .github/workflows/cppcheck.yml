@@ -1,25 +1,23 @@
-name: Cppcheck
+name: cppcheck-action-test
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
-  cppcheck:
+  build:
+    name: cppcheck-test
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+      - name: Run cppcheck
+        uses: deep5050/cppcheck-action@v1.1.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Install Cppcheck
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y cppcheck
-
-    - name: Run Cppcheck
-      run: |
-        cppcheck --enable=all --inconclusive --xml --xml-version=2 . 2> cppcheck-result.xml
-        cat cppcheck-result.xml
+      - name: Upload cppcheck report
+        uses: actions/upload-artifact@v3
+        with:
+          name: cppcheck-report
+          path: cppcheck-result.xml
